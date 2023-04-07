@@ -105,3 +105,4 @@ dist
 
 # Customized
 .DS_Store
+fedops-web-client.code-workspace
