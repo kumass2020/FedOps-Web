@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React from 'react';
+import { AppBar, Toolbar, Typography, Container, Box, Grid } from '@mui/material';
+import Sidebar from './components/common/Sidebar';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box display="flex">
+      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+        <Toolbar>
+          <Typography variant="h6">My App</Typography>
+        </Toolbar>
+      </AppBar>
+      <Grid container>
+        <Grid item>
+          <Sidebar />
+        </Grid>
+        <Grid item xs>
+          <Box component="main" flexGrow={1} p={3}>
+            <Toolbar /> {/* This is to keep the main content below the AppBar */}
+            <Container maxWidth="lg">
+              {/* Add your main content here */}
+              <Typography variant="h4">Main Content</Typography>
+            </Container>
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
   );
-}
+};
 
 export default App;
