@@ -19,6 +19,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Header from '../components/common/Header';
 import { changeField, initializeForm, register } from '../modules/auth';
 import { check } from '../modules/user';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -35,7 +36,8 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function RegisterPage({ history }) {
+export default function RegisterPage() {
+    const navigate = useNavigate();
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
     const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
@@ -103,14 +105,14 @@ export default function RegisterPage({ history }) {
     // user 값이 잘 설정되었는지 확인
     useEffect(() => {
         if (user) {
-            history.push('/'); // 홈 화면으로 이동
+            navigate('/'); // 홈 화면으로 이동
             try {
                 localStorage.setItem('user', JSON.stringify(user));
             } catch (e) {
                 console.log('localStorage is not working');
             }
         }
-    }, [history, user]);
+    }, [navigate, user]);
 
     // const handleSubmit = (event) => {
     // event.preventDefault();

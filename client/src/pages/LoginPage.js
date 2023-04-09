@@ -19,6 +19,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Header from '../components/common/Header';
 import { changeField, initializeForm, login } from '../modules/auth';
 import { check } from '../modules/user';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -36,6 +37,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function LoginPage({ history }) {
+    const navigate = useNavigate();
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
     const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
@@ -84,14 +86,14 @@ export default function LoginPage({ history }) {
 
     useEffect(() => {
         if (user) {
-            history.push('/');
+            navigate(-1);
             try {
                 localStorage.setItem('user', JSON.stringify(user));
             } catch (e) {
                 console.log('localStorage is not working');
             }
         }
-    }, [history, user]);
+    }, [navigate, user]);
 
     // const handleSubmit = (event) => {
     //     event.preventDefault();
