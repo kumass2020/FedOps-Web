@@ -17,8 +17,8 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://sites.google.com/view/keylee/">
+        Cognitive Computing Lab @ Gachon Univ.
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -117,7 +117,7 @@ export default function RegisterPage() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
