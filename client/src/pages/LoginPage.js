@@ -71,13 +71,13 @@ export default function LoginPage({ history }) {
 
     useEffect(() => {
         if (authError) {
-            console.log('오류 발생');
+            console.log('An error occured');
             console.log(authError);
-            setError('로그인 실패');
+            setError('Login failed.');
             return;
         }
         if (auth) {
-            console.log('로그인 성공');
+            console.log('Login success.');
             dispatch(check());
         }
     }, [auth, authError, dispatch]);
@@ -93,14 +93,14 @@ export default function LoginPage({ history }) {
         }
     }, [history, user]);
 
-    const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-    });
-    };
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     const data = new FormData(event.currentTarget);
+    //     console.log({
+    //         email: data.get('email'),
+    //         password: data.get('password'),
+    //     });
+    // };
 
     return (
     <ThemeProvider theme={theme}>
@@ -121,52 +121,58 @@ export default function LoginPage({ history }) {
             <Typography component="h1" variant="h5">
             Sign in
             </Typography>
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                onChange={onChange}
-            />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-            />
-            <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-            />
-            <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-            >
-                Sign In
-            </Button>
-            <Grid container>
-                <Grid item xs>
-                <Link href="#" variant="body2">
-                    Forgot password?
-                </Link>
+            <Box component="form" onSubmit={onSubmit} noValidate sx={{ mt: 1 }}>
+                <Grid item xs={12}>
+                    {error && <Typography color="error">{error}</Typography>}
                 </Grid>
-                <Grid item>
-                <Link href="/register" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                </Link>
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="username"
+                    label="Email Address"
+                    name="username"
+                    autoComplete="email"
+                    autoFocus
+                    value={form.username}
+                    onChange={onChange}
+                />
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    value={form.password}
+                    onChange={onChange}
+                />
+                <FormControlLabel
+                    control={<Checkbox value="remember" color="primary" />}
+                    label="Remember me"
+                />
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                >
+                    Sign In
+                </Button>
+                <Grid container>
+                    <Grid item xs>
+                    <Link href="#" variant="body2">
+                        Forgot password?
+                    </Link>
+                    </Grid>
+                    <Grid item>
+                    <Link href="/register" variant="body2">
+                        {"Don't have an account? Sign Up"}
+                    </Link>
+                    </Grid>
                 </Grid>
-            </Grid>
             </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
