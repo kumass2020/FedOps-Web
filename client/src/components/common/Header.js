@@ -29,10 +29,10 @@ const Header = () => {
               </Typography>
             </Link>
             {user ? (
-              <div>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
                 <UserInfo>{user.username}</UserInfo>
                 <Button onClick={onLogout} color="inherit">
-                    Logout
+                  Logout
                 </Button>
               </div>
             ) : (
